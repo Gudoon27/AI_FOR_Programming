@@ -31,11 +31,6 @@ def main():
         description="Print GC content percentages for FASTA records."
     )
     parser.add_argument("fasta", help="path to the FASTA file")
-    parser.add_argument(
-        "--min-gc",
-        type=float,
-        help="only print records with GC content above this percentage",
-    )
     args = parser.parse_args()
 
     for header, sequence in read_fasta(args.fasta):
@@ -44,9 +39,7 @@ def main():
             continue
         gc_count = sum(base in "GCgc" for base in sequence)
         percentage = gc_count / len(sequence) * 100
-        if args.min_gc is not None and percentage <= args.min_gc:
-            continue
-        print(f">{header}\t{percentage:.2f}%")
+        print(f">{header}\t{percentage:.3f}%")
 
 
 if __name__ == "__main__":
