@@ -39,7 +39,7 @@ def main():
             continue
         gc_count = sum(base in "GCgc" for base in sequence)
         percentage = gc_count / len(sequence) * 100
-        print(f">{header}\t{percentage:.2f}%")
+        print(f">{header}\t{percentage:.3f}%")
 
 
 if __name__ == "__main__":
